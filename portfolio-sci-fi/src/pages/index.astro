@@ -1,0 +1,161 @@
+---
+import Layout from "../layouts/Layout.astro";
+import "../styles/global.css";
+import HeroSection from "../components/HeroSection";
+---
+
+<Layout>
+  <main id="scroll-container" class="flex w-fit h-full bg-[#151520]">
+    <!-- Sekcja 1: Intro -->
+
+    <section
+      id="intro"
+      class="h-screen w-screen flex-shrink-0 snap-center flex items-center justify-center"
+    >
+      <HeroSection client:only="react" />
+      <div
+        class="text-overlay absolute top-0 left-0 w-full h-full p-8 md:p-16 flex justify-between items-center pointer-events-none"
+      >
+        {/* --- LEWA STRONA (OPIS) --- */}
+        <div class="info-panel-left space-y-8 pointer-events-auto">
+          <div class="info-box opacity-0">
+            {/* opacity-0 ukrywa element przed animacją GSAP */}
+            <h1 class="info-title">Witaj w Moim Portfolio</h1>
+            <p class="info-text">
+              Cześć! Nazywam się Kamil i właśnie wkroczyłeś do mojego
+              interaktywnego świata. Ta scena jest nie tylko pokazem
+              technicznym, ale i wstępem do mojej podróży jako programisty.
+            </p>
+          </div>
+          <div class="info-box opacity-0">
+            <h1 class="info-title">Mój Stack Technologiczny</h1>
+            <p class="info-text">
+              Specjalizuję się w tworzeniu solidnych rozwiązań backendowych w
+              Javie oraz dynamicznych, immersyjnych interfejsów w React.
+            </p>
+          </div>
+          <div class="info-box opacity-0">
+            <h1 class="info-title">Nawiążmy Kontakt</h1>
+            <p class="info-text">
+              Znajdziesz mnie na <a
+                href="https://www.linkedin.com/in/twoj-profil/"
+                target="_blank">LinkedIn</a
+              >
+              lub napisz <a href="mailto:twoj-email@przyklad.com">e-mail</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sekcja 2: O Mnie -->
+    <section
+      id="about"
+      class="h-screen w-screen flex-shrink-0 snap-center flex items-center justify-center"
+    >
+      <h1 class="text-white text-4xl">SEKCJA 2: O MNIE</h1>
+    </section>
+
+    <!-- Sekcja 3: Projekty -->
+    <section
+      id="projects"
+      class="h-screen w-screen flex-shrink-0 snap-center flex items-center justify-center"
+    >
+      <h1 class="text-white text-4xl">SEKCJA 3: PROJEKTY</h1>
+    </section>
+
+    <!-- Sekcja 4: Kontakt -->
+    <section
+      id="projects"
+      class="h-screen w-screen flex-shrink-0 snap-center flex items-center justify-center"
+    >
+      <h1 class="text-white text-4xl">SEKCJA 4: KONTAKT</h1>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  /* Podstawowe style dla kontenerów i tekstu */
+  .text-overlay {
+    font-family: "Orbitron", sans-serif;
+    color: #cceeff;
+  }
+  .info-box {
+    background-color: rgba(0, 20, 30, 0.7);
+    border: 1px solid rgba(0, 187, 255, 0.5);
+    border-radius: 8px;
+    padding: 1.25rem; /* 20px */
+    max-width: 320px;
+    backdrop-filter: blur(5px);
+  }
+  .info-title {
+    color: cyan;
+    font-weight: 700;
+    margin-bottom: 0.75rem; /* 12px */
+    font-size: 1.125rem; /* 18px */
+    border-bottom: 1px solid rgba(0, 187, 255, 0.3);
+    padding-bottom: 0.5rem;
+  }
+  .info-text {
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.6;
+  }
+  .info-text a {
+    color: cyan;
+    text-decoration: underline;
+    transition: color 0.2s;
+  }
+  .info-text a:hover {
+    color: white;
+  }
+  .skill-card {
+    width: 450px; /* szerokość karty */
+    margin: 0 4rem; /* odstęp między kartami */
+    flex-shrink: 0;
+    /* ... reszta stylów karty z glassmorphism ... */
+  }
+</style>
+
+<!-- === SEKCJA SKRYPTU (GSAP) === -->
+<script>
+  import { gsap } from "gsap";
+
+  // Zaczekaj aż cały dokument będzie gotowy
+  document.addEventListener("DOMContentLoaded", () => {
+    // Opóźnienie animacji, aby scena 3D zdążyła się załadować i zrobić wrażenie
+    const delay = 1.5; // 1.5 sekundy opóźnienia
+
+    // Animacja dla lewych paneli
+    gsap.fromTo(
+      ".info-panel-left .info-box",
+      {
+        x: -50, // zacznij z lewej
+        opacity: 0,
+      },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.3, // każdy kolejny panel animuje się z opóźnieniem 0.3s
+        delay: delay,
+      }
+    );
+
+    // Animacja dla prawego panelu
+    gsap.fromTo(
+      ".info-panel-right .info-box",
+      {
+        x: 50, // zacznij z prawej
+        opacity: 0,
+      },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: "power3.out",
+        delay: delay + 0.3, // lekko później niż pierwszy lewy panel
+      }
+    );
+  });
+</script>
