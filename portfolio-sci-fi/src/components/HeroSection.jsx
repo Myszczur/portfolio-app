@@ -13,7 +13,7 @@ import {
   Vignette,
   ChromaticAberration,
 } from "@react-three/postprocessing";
-import { KernelSize } from "postprocessing";
+
 import * as THREE from "three";
 import gsap from "gsap";
 import AtomOrbits from "./hero/AtomOrbits";
@@ -24,7 +24,6 @@ import ProfilePhoto from "./hero/ProfilePhoto";
 // ===============================================
 function Rig({ children }) {
   const ref = React.useRef();
-  // Wracamy do wbudowanego hooka R3F
   const { mouse } = useThree();
 
   useFrame(() => {

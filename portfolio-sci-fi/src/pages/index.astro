@@ -2,80 +2,80 @@
 import Layout from "../layouts/Layout.astro";
 import "../styles/global.css";
 import HeroSection from "../components/HeroSection";
+import StickyCards from "../components/StickyCards.jsx";
 ---
 
-<Layout>
-  <main id="scroll-container" class="flex w-fit h-full bg-[#151520]">
-    <!-- Sekcja 1: Intro -->
+<main
+  id="scroll-container"
+  class="flex w-full h-screen overflow-x-auto bg-[#151520]"
+>
+  <!-- Sekcja 1: Intro -->
+  <section
+    id="intro"
+    class="h-screen w-screen flex-shrink-0 flex items-center justify-center relative text-white"
+  >
+    <HeroSection client:only="react" />
+    <div class="absolute top-0 left-0 w-full h-full p-8 md:p-16 ...">
+      <!-- ... Twoje info-boxy ... -->
+    </div>
+  </section>
 
-    <section
-      id="intro"
-      class="h-screen w-screen flex-shrink-0 snap-center flex items-center justify-center"
-    >
-      <HeroSection client:only="react" />
-      <div
-        class="text-overlay absolute top-0 left-0 w-full h-full p-8 md:p-16 flex justify-between items-center pointer-events-none"
-      >
-        {/* --- LEWA STRONA (OPIS) --- */}
-        <div class="info-panel-left space-y-8 pointer-events-auto">
-          <div class="info-box opacity-0">
-            {/* opacity-0 ukrywa element przed animacją GSAP */}
-            <h1 class="info-title">Witaj w Moim Portfolio</h1>
-            <p class="info-text">
-              Cześć! Nazywam się Kamil i właśnie wkroczyłeś do mojego
-              interaktywnego świata. Ta scena jest nie tylko pokazem
-              technicznym, ale i wstępem do mojej podróży jako programisty.
-            </p>
-          </div>
-          <div class="info-box opacity-0">
-            <h1 class="info-title">Mój Stack Technologiczny</h1>
-            <p class="info-text">
-              Specjalizuję się w tworzeniu solidnych rozwiązań backendowych w
-              Javie oraz dynamicznych, immersyjnych interfejsów w React.
-            </p>
-          </div>
-          <div class="info-box opacity-0">
-            <h1 class="info-title">Nawiążmy Kontakt</h1>
-            <p class="info-text">
-              Znajdziesz mnie na <a
-                href="https://www.linkedin.com/in/twoj-profil/"
-                target="_blank">LinkedIn</a
-              >
-              lub napisz <a href="mailto:twoj-email@przyklad.com">e-mail</a>.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+  <!-- Sekcja 2: O Mnie / Umiejętności (TUTAJ JEST NASZA ANIMACJA) -->
+  <section id="skills-section" class="h-screen w-screen flex-shrink-0 relative">
+    <!-- Umieszczamy komponent React, który przejmie kontrolę nad tą sekcją -->
+    <StickyCards client:load />
+  </section>
 
-    <!-- Sekcja 2: O Mnie -->
-    <section
-      id="about"
-      class="h-screen w-screen flex-shrink-0 snap-center flex items-center justify-center"
-    >
-      <h1 class="text-white text-4xl">SEKCJA 2: O MNIE</h1>
-    </section>
+  <!-- Sekcja 3: Projekty -->
+  <section
+    id="projects"
+    class="h-screen w-screen flex-shrink-0 flex items-center justify-center"
+  >
+    <h1 class="text-white text-4xl">SEKCJA 3: PROJEKTY</h1>
+  </section>
 
-    <!-- Sekcja 3: Projekty -->
-    <section
-      id="projects"
-      class="h-screen w-screen flex-shrink-0 snap-center flex items-center justify-center"
-    >
-      <h1 class="text-white text-4xl">SEKCJA 3: PROJEKTY</h1>
-    </section>
+  <!-- Sekcja 4: Kontakt -->
+  <section
+    id="contact"
+    class="h-screen w-screen flex-shrink-0 flex items-center justify-center"
+  >
+    <h1 class="text-white text-4xl">SEKCJA 4: KONTAKT</h1>
+  </section>
+</main>
 
-    <!-- Sekcja 4: Kontakt -->
-    <section
-      id="projects"
-      class="h-screen w-screen flex-shrink-0 snap-center flex items-center justify-center"
-    >
-      <h1 class="text-white text-4xl">SEKCJA 4: KONTAKT</h1>
-    </section>
-  </main>
-</Layout>
+<style is:global>
 
-<style>
-  /* Podstawowe style dla kontenerów i tekstu */
+  
+  #skills-title {
+    font-family: "Orbitron", sans-serif;
+  }
+  .skill-label {
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    white-space: nowrap;
+    pointer-events: none; /* Ważne, aby nie blokować kliknięć na mesh */
+    transition: transform 0.2s;
+  }
+
+  .skill-details-panel {
+    /* Użyj styli podobnych do .info-box z sekcji 1 */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 20, 30, 0.85);
+    border: 1px solid rgba(0, 187, 255, 0.5);
+    border-radius: 8px;
+    padding: 2rem;
+    max-width: 400px;
+    backdrop-filter: blur(8px);
+    color: #cceeff;
+    z-index: 10;
+    pointer-events: auto; /* Panel musi być klikalny */
+  }
   .text-overlay {
     font-family: "Orbitron", sans-serif;
     color: #cceeff;
@@ -96,6 +96,7 @@ import HeroSection from "../components/HeroSection";
     border-bottom: 1px solid rgba(0, 187, 255, 0.3);
     padding-bottom: 0.5rem;
   }
+
   .info-text {
     font-size: 0.875rem; /* 14px */
     line-height: 1.6;
@@ -105,14 +106,34 @@ import HeroSection from "../components/HeroSection";
     text-decoration: underline;
     transition: color 0.2s;
   }
-  .info-text a:hover {
-    color: white;
+
+  body,
+  html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
   }
-  .skill-card {
-    width: 450px; /* szerokość karty */
-    margin: 0 4rem; /* odstęp między kartami */
-    flex-shrink: 0;
-    /* ... reszta stylów karty z glassmorphism ... */
+
+  .horizontal-wrapper {
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .horizontal-sections {
+    display: flex;
+    width: max-content;
+    height: 100vh;
+  }
+
+  .panel {
+    flex: 0 0 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    background: lightblue;
+    border-right: 2px solid white;
   }
 </style>
 
@@ -120,9 +141,7 @@ import HeroSection from "../components/HeroSection";
 <script>
   import { gsap } from "gsap";
 
-  // Zaczekaj aż cały dokument będzie gotowy
   document.addEventListener("DOMContentLoaded", () => {
-    // Opóźnienie animacji, aby scena 3D zdążyła się załadować i zrobić wrażenie
     const delay = 1.5; // 1.5 sekundy opóźnienia
 
     // Animacja dla lewych paneli
@@ -139,22 +158,6 @@ import HeroSection from "../components/HeroSection";
         ease: "power3.out",
         stagger: 0.3, // każdy kolejny panel animuje się z opóźnieniem 0.3s
         delay: delay,
-      }
-    );
-
-    // Animacja dla prawego panelu
-    gsap.fromTo(
-      ".info-panel-right .info-box",
-      {
-        x: 50, // zacznij z prawej
-        opacity: 0,
-      },
-      {
-        x: 0,
-        opacity: 1,
-        duration: 0.8,
-        ease: "power3.out",
-        delay: delay + 0.3, // lekko później niż pierwszy lewy panel
       }
     );
   });

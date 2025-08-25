@@ -1,1 +1,17 @@
 @import "tailwindcss";
+
+
+/* .skills-section:hover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle 400px at var(--x) var(--y), rgba(2, 226, 235, 0.15), transparent 80%);
+    pointer-events: none;
+    z-index: 5;
+} */
+
+
+html, body {
+    overflow-x: hidden;
+    /* Dopuszczalne na `html` i `body` by ukryć natywny scroll, Lenis i tak go obsłuży */
+}
