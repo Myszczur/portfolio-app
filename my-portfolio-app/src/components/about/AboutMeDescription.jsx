@@ -20,14 +20,12 @@ function AboutMeDescription({ heading, description, picture }) {
     mouseY.set(0.5);
   };
 
-  // Transformacja dla GŁÓWNEJ KARTY (bez zmian)
   const cardRotate = useTransform([mouseX, mouseY], ([latestX, latestY]) => {
     const rotateX = (latestY - 0.5) * -20;
     const rotateY = (latestX - 0.5) * 20;
     return `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
   });
 
-  // Transformacja dla ZDJĘCIA (bez zmian)
   const imageTransform = useTransform(
     [mouseX, mouseY],
     ([latestX, latestY]) => {
@@ -37,7 +35,6 @@ function AboutMeDescription({ heading, description, picture }) {
     }
   );
 
-  // 1. Transformacja dla NAGŁÓWKA (h2) - mocniejszy ruch
   const headingTransform = useTransform(
     [mouseX, mouseY],
     ([latestX, latestY]) => {
@@ -47,7 +44,6 @@ function AboutMeDescription({ heading, description, picture }) {
     }
   );
 
-  // 2. Transformacja dla OPISU (p) - słabszy, subtelniejszy ruch
   const descriptionTransform = useTransform(
     [mouseX, mouseY],
     ([latestX, latestY]) => {
@@ -70,7 +66,6 @@ function AboutMeDescription({ heading, description, picture }) {
       className="relative w-full max-w-4xl mx-auto rounded-2xl shadow-2xl shadow-green-500/10 bg-gray-900 backdrop-blur-lg border-4 border-green-400/50"
     >
       <div className="flex flex-col md:flex-row items-center gap-8 p-8 md:p-12 transform-style-3d">
-        {/* === ZDJĘCIE === */}
         <motion.div
           style={{ transform: imageTransform }}
           className="flex-shrink-0"
@@ -82,16 +77,13 @@ function AboutMeDescription({ heading, description, picture }) {
           />
         </motion.div>
 
-        {/* === KONTENER TEKSTU (teraz tylko do layoutu) === */}
         <div className="flex-1 text-center md:text-left">
-          {/* Nagłówek ma teraz swoją własną animację */}
           <motion.h2
             style={{ transform: headingTransform }}
             className="text-3xl lg:text-4xl font-bold mb-4 text-white"
           >
             {heading}
           </motion.h2>
-          {/* Opis ma swoją własną, słabszą animację */}
           <motion.p
             style={{ transform: descriptionTransform }}
             className="text-lg text-gray-300 leading-relaxed"

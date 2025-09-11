@@ -1,10 +1,8 @@
 import { useRef, useEffect } from "react";
 
 const MatrixRain = ({
-  // ===== NOWE, IDEALNE KOLORY DOMYŚLNE =====
-  mainColor = "#2E7D32", // Klasyczny zielony "Matrix"
-  headColor = "#2E7D32", // Bardzo jasny, prawie biały zielony dla "głowy"
-  // ==========================================
+  mainColor = "#2E7D32",
+  headColor = "#2E7D32",
   trailOpacity = 0.05,
   speed = 70,
   fontSize = 16,
@@ -57,16 +55,13 @@ const MatrixRain = ({
         const char = getRandomChar();
         const y = rainDrops[i] * fontSize;
 
-        // Rysujemy najpierw ciemniejszy znak (jako część ogona)
         ctx.fillText(char, i * fontSize, y);
 
-        // Dodajemy poświatę i rysujemy jaśniejszy znak "głowy"
         ctx.shadowColor = headColor;
         ctx.shadowBlur = 10;
         ctx.fillStyle = headColor;
         ctx.fillText(char, i * fontSize, y);
 
-        // Resetujemy poświatę i kolor dla następnej iteracji
         ctx.shadowBlur = 0;
         ctx.fillStyle = mainColor;
 

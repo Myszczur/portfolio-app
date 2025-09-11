@@ -208,8 +208,105 @@ class IcosahedronGeometry extends Geometry {
   constructor() {
     super();
     const t = Math.sqrt(5) * 0.5 + 0.5;
-    this.addVertex(-1,t,0,1,t,0,-1,-t,0,1,-t,0,0,-1,t,0,1,t,0,-1,-t,0,1,-t,t,0,-1,t,0,1,-t,0,-1,-t,0,1)
-    .addFace(0,11,5,0,5,1,0,1,7,0,7,10,0,10,11,1,5,9,5,11,4,11,10,2,10,7,6,7,1,8,3,9,4,3,4,2,3,2,6,3,6,8,3,8,9,4,9,5,2,4,11,6,2,10,8,6,7,9,8,1);
+    this.addVertex(
+      -1,
+      t,
+      0,
+      1,
+      t,
+      0,
+      -1,
+      -t,
+      0,
+      1,
+      -t,
+      0,
+      0,
+      -1,
+      t,
+      0,
+      1,
+      t,
+      0,
+      -1,
+      -t,
+      0,
+      1,
+      -t,
+      t,
+      0,
+      -1,
+      t,
+      0,
+      1,
+      -t,
+      0,
+      -1,
+      -t,
+      0,
+      1
+    ).addFace(
+      0,
+      11,
+      5,
+      0,
+      5,
+      1,
+      0,
+      1,
+      7,
+      0,
+      7,
+      10,
+      0,
+      10,
+      11,
+      1,
+      5,
+      9,
+      5,
+      11,
+      4,
+      11,
+      10,
+      2,
+      10,
+      7,
+      6,
+      7,
+      1,
+      8,
+      3,
+      9,
+      4,
+      3,
+      4,
+      2,
+      3,
+      2,
+      6,
+      3,
+      6,
+      8,
+      3,
+      8,
+      9,
+      4,
+      9,
+      5,
+      2,
+      4,
+      11,
+      6,
+      2,
+      10,
+      8,
+      6,
+      7,
+      9,
+      8,
+      1
+    );
   }
 }
 
@@ -1037,8 +1134,8 @@ export default function ProjectsShowcase({ items = [] }) {
       {activeItem && (
         <>
           <h2
-            className={`select-none absolute text-green-400 [text-shadow:0_0_8px_theme(colors.green.500)] [font-size:4rem]
-                left-[6em] top-1/2 transform translate-x-[20%] -translate-y-1/2 transition-all ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
+            className={`sm:text-4xl select-none absolute text-green-300 [text-shadow:0_0_8px_theme(colors.green.500)] [font-size:4rem]
+                lg:left-[7em] md:left-[5em] sm:left-[0.1em] top-1/2 transform translate-x-[20%] -translate-y-1/2 transition-all ease-[cubic-bezier(0.25,0.1,0.25,1.0)] max-w-[2ch]
           ${
             isMoving
               ? "opacity-0 pointer-events-none duration-[100ms]"
@@ -1050,8 +1147,8 @@ export default function ProjectsShowcase({ items = [] }) {
           </h2>
 
           <p
-            className={`select-none absolute max-w-[10ch] text-[1.5rem] text-green-400 [text-shadow:0_0_8px_theme(colors.green.500)]
-                top-1/2 right-[16%] transition-all ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
+            className={`sm:text-2xl select-none absolute max-w-[10ch] text-[1.5rem] text-green-300 [text-shadow:0_0_8px_theme(colors.green.500)]
+                top-1/2 lg:right-[18%] md:right-[12%] sm:right-[10%] transition-all ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
           ${
             isMoving
               ? "opacity-0 pointer-events-none duration-[100ms] translate-x-[-60%] -translate-y-1/2"

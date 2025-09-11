@@ -18,21 +18,21 @@ const Footer = () => {
         {/* CTA */}
         <div className="text-center mb-12">
           <h2 className="text-2xl font-bold text-green-400 drop-shadow-[0_0_10px_#00ff00] mb-2">
-            Szukasz developera do swojego zespołu?
+            Are you currently looking for a developer to join your team?
           </h2>
           <p className="text-green-300 mb-4">
-            React • Java – full stack w praktyce. 🚀
+            React • Java – Full Stack in Practice. 🚀
             <br />
-            Napisz do mnie, chętnie dołączę do nowych wyzwań!
+            Contact me, I'd be happy to take on new challenges!
           </p>
-          <Magnet padding={200} disabled={false} magnetStrength={10}>
+          <Magnet padding={200} disabled={false} magnetStrength={3}>
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               href="mailto:twoj@mail.com"
               className="inline-block px-6 py-2 rounded-lg bg-green-600/80 hover:bg-green-500 text-black font-bold shadow-lg shadow-green-500/30 transition"
             >
-              Napisz do mnie
+              Contact me
             </motion.a>
           </Magnet>
         </div>
@@ -41,7 +41,7 @@ const Footer = () => {
         <div className="flex justify-center space-x-6 mb-12">
           <motion.a
             whileHover={{ scale: 1.2 }}
-            href="https://github.com/twoj-profil"
+            href="https://github.com/Myszczur"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
@@ -51,7 +51,7 @@ const Footer = () => {
           </motion.a>
           <motion.a
             whileHover={{ scale: 1.2 }}
-            href="https://linkedin.com/in/twoj-profil"
+            href="https://www.linkedin.com/in/kamil-urbanik"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
@@ -61,7 +61,7 @@ const Footer = () => {
           </motion.a>
           <motion.a
             whileHover={{ scale: 1.2 }}
-            href="mailto:twoj@mail.com"
+            href="mailto:kamil.urbanik@wir.pl"
             aria-label="Email"
             className="text-green-400 hover:text-green-300 hover:drop-shadow-[0_0_6px_#00ff00] transition"
           >
@@ -76,7 +76,7 @@ const Footer = () => {
         <div className="text-center text-sm">
           <p className="text-green-300 drop-shadow-[0_0_6px_#00ff00]">
             © {currentYear} <span className="font-semibold">Kamil Urbanik</span>
-            . Stworzone z pasją{" "}
+            . Made with passion{" "}
             <motion.span
               animate={{ scale: [1, 1.3, 1] }}
               transition={{ repeat: Infinity, duration: 1.5 }}

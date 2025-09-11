@@ -4,27 +4,20 @@ import gsap from "gsap";
 import { useLayoutEffect, useRef } from "react";
 import * as THREE from "three";
 
-// Komponent Rig nie jest już potrzebny, jego logikę przenosimy niżej.
-
 function ProfilePhoto({ position = [0, 0, 0] }) {
-  // 1. Pobieramy `mouse` z useThree bezpośrednio tutaj
   const { mouse } = useThree();
   const texture = useTexture("/brain.jpg");
   texture.colorSpace = THREE.SRGBColorSpace;
 
-  // 2. Ten ref będzie teraz obsługiwał i pozycję, i rotację
   const groupRef = useRef();
   const frameRef = useRef();
   const hoverTimeline = useRef();
 
-  const baseRadius = 1.7;
+  const baseRadius = 2.2;
   const frameThickness = 0.06;
 
-  // 3. Przeniesiona logika z komponentu Rig
-  // Obraca całą grupą (groupRef) w odpowiedzi na ruch myszki
   useFrame(() => {
     if (groupRef.current) {
-      // Zmieniamy `ref.current` na `groupRef.current`
       groupRef.current.rotation.y = THREE.MathUtils.lerp(
         groupRef.current.rotation.y,
         (mouse.x * Math.PI) / 20,
@@ -39,7 +32,6 @@ function ProfilePhoto({ position = [0, 0, 0] }) {
   });
 
   useLayoutEffect(() => {
-    // Animacje GSAP pozostają bez zmian, bo operują na tym samym `groupRef`
     const ctx = gsap.context(() => {
       gsap.to(groupRef.current.position, {
         y: groupRef.current.position.y + 0.1,
@@ -69,14 +61,12 @@ function ProfilePhoto({ position = [0, 0, 0] }) {
   }, []);
 
   return (
-    // Ta grupa ma teraz przypisaną pozycję, animacje GSAP oraz rotację z useFrame
     <group
       position={position}
       ref={groupRef}
       onPointerOver={() => hoverTimeline.current?.play()}
       onPointerOut={() => hoverTimeline.current?.reverse()}
     >
-      {/* 4. Usuwamy opakowanie <Rig>, bo jego logika jest już w komponencie */}
       <Circle args={[baseRadius, 64]}>
         <meshStandardMaterial map={texture} side={THREE.DoubleSide} />
       </Circle>
