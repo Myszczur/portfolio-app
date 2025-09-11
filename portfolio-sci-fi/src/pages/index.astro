@@ -1,0 +1,164 @@
+---
+import Layout from "../layouts/Layout.astro";
+import "../styles/global.css";
+import HeroSection from "../components/HeroSection";
+import StickyCards from "../components/StickyCards.jsx";
+---
+
+<main
+  id="scroll-container"
+  class="flex w-full h-screen overflow-x-auto bg-[#151520]"
+>
+  <!-- Sekcja 1: Intro -->
+  <section
+    id="intro"
+    class="h-screen w-screen flex-shrink-0 flex items-center justify-center relative text-white"
+  >
+    <HeroSection client:only="react" />
+    <div class="absolute top-0 left-0 w-full h-full p-8 md:p-16 ...">
+      <!-- ... Twoje info-boxy ... -->
+    </div>
+  </section>
+
+  <!-- Sekcja 2: O Mnie / Umiejętności (TUTAJ JEST NASZA ANIMACJA) -->
+  <section id="skills-section" class="h-screen w-screen flex-shrink-0 relative">
+    <!-- Umieszczamy komponent React, który przejmie kontrolę nad tą sekcją -->
+    <StickyCards client:load />
+  </section>
+
+  <!-- Sekcja 3: Projekty -->
+  <section
+    id="projects"
+    class="h-screen w-screen flex-shrink-0 flex items-center justify-center"
+  >
+    <h1 class="text-white text-4xl">SEKCJA 3: PROJEKTY</h1>
+  </section>
+
+  <!-- Sekcja 4: Kontakt -->
+  <section
+    id="contact"
+    class="h-screen w-screen flex-shrink-0 flex items-center justify-center"
+  >
+    <h1 class="text-white text-4xl">SEKCJA 4: KONTAKT</h1>
+  </section>
+</main>
+
+<style is:global>
+
+  
+  #skills-title {
+    font-family: "Orbitron", sans-serif;
+  }
+  .skill-label {
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    white-space: nowrap;
+    pointer-events: none; /* Ważne, aby nie blokować kliknięć na mesh */
+    transition: transform 0.2s;
+  }
+
+  .skill-details-panel {
+    /* Użyj styli podobnych do .info-box z sekcji 1 */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 20, 30, 0.85);
+    border: 1px solid rgba(0, 187, 255, 0.5);
+    border-radius: 8px;
+    padding: 2rem;
+    max-width: 400px;
+    backdrop-filter: blur(8px);
+    color: #cceeff;
+    z-index: 10;
+    pointer-events: auto; /* Panel musi być klikalny */
+  }
+  .text-overlay {
+    font-family: "Orbitron", sans-serif;
+    color: #cceeff;
+  }
+  .info-box {
+    background-color: rgba(0, 20, 30, 0.7);
+    border: 1px solid rgba(0, 187, 255, 0.5);
+    border-radius: 8px;
+    padding: 1.25rem; /* 20px */
+    max-width: 320px;
+    backdrop-filter: blur(5px);
+  }
+  .info-title {
+    color: cyan;
+    font-weight: 700;
+    margin-bottom: 0.75rem; /* 12px */
+    font-size: 1.125rem; /* 18px */
+    border-bottom: 1px solid rgba(0, 187, 255, 0.3);
+    padding-bottom: 0.5rem;
+  }
+
+  .info-text {
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.6;
+  }
+  .info-text a {
+    color: cyan;
+    text-decoration: underline;
+    transition: color 0.2s;
+  }
+
+  body,
+  html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  .horizontal-wrapper {
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .horizontal-sections {
+    display: flex;
+    width: max-content;
+    height: 100vh;
+  }
+
+  .panel {
+    flex: 0 0 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    background: lightblue;
+    border-right: 2px solid white;
+  }
+</style>
+
+<!-- === SEKCJA SKRYPTU (GSAP) === -->
+<script>
+  import { gsap } from "gsap";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const delay = 1.5; // 1.5 sekundy opóźnienia
+
+    // Animacja dla lewych paneli
+    gsap.fromTo(
+      ".info-panel-left .info-box",
+      {
+        x: -50, // zacznij z lewej
+        opacity: 0,
+      },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.3, // każdy kolejny panel animuje się z opóźnieniem 0.3s
+        delay: delay,
+      }
+    );
+  });
+</script>
