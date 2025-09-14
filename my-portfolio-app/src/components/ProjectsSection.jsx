@@ -9,32 +9,32 @@ gsap.registerPlugin(ScrollTrigger);
 const items = [
   {
     image: "https://picsum.photos/300/300?grayscale",
-    title: "Item 1",
+    title: "my-Pordasdcasfcsdfdsadas",
     description: "Opis 1...",
   },
   {
     image: "https://picsum.photos/400/400?grayscale",
-    title: "Item 2",
+    title: "Item 2dasdasdasdasdasd",
     description: "Opis 2...",
   },
   {
     image: "https://picsum.photos/500/500?grayscale",
-    title: "Item 3",
+    title: "Item 3dasdasdasdasda",
     description: "Opis 3...",
   },
   {
     image: "https://picsum.photos/600/600?grayscale",
-    title: "Item 4",
+    title: "Item 4daqfdcasdfvasd",
     description: "Opis 4...",
   },
   {
     image: "https://picsum.photos/600/600?grayscale",
-    title: "Item test1",
+    title: "Item test1dasdasdasdas",
     description: "Opis 5...",
   },
   {
     image: "https://picsum.photos/600/600?grayscale",
-    title: "Item test2",
+    title: "Item test2dasdasd",
     description: "Opis 6...",
   },
 ];
@@ -83,9 +83,9 @@ const ProjectsSection = () => {
     <section
       ref={mainRef}
       id="projects"
-      className="relative w-full overflow-hidden text-white"
+      className="relative w-full overflow-hidden text-white pb-20"
     >
-      <div ref={contentRef} className="flex w-[120vw] h-screen relative">
+      <div ref={contentRef} className="flex w-[150vw] h-screen relative">
         {/* Panel 1: Intro */}
         <div
           ref={introRef}
@@ -95,7 +95,6 @@ const ProjectsSection = () => {
           <p className="text-2xl text-gray-400 mt-8 font-bold animate-bounce ">
             Przewijaj dalej...
           </p>
-
         </div>
 
         {/* Panel 2: Projekty */}

@@ -76,7 +76,7 @@ const ScrollFloat = ({
       ref={containerRef}
       className="text-5xl md:text-7xl lg:text-8xl font-bold text-white text-center leading-[1.5] inline-block text-[clamp(2.0rem,4vw,3rem)]"
     >
-        {splitText}
+      {splitText}
     </h1>
   );
 };
