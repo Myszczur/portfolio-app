@@ -1,5 +1,3 @@
-import React from "react";
-
 const ProjectCard = ({ title, description, image, tags }) => {
   return (
     <div className="w-screen h-screen flex-shrink-0 flex items-center justify-center p-8 md:p-16">

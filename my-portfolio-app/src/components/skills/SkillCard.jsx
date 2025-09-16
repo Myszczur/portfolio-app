@@ -1,8 +1,8 @@
-// /* eslint-disable no-unused-vars */
+/* eslint-disable no-unused-vars */
 import React from "react";
 import { motion } from "framer-motion";
 import useTilt from "../../hooks/useTilt";
-import ElectricBorder from "../ElectricBorder";
+import ElectricBorder from "./ElectricBorder";
 
 const SkillCard = ({ skill, variants }) => {
   const tiltOptions = {
@@ -10,7 +10,7 @@ const SkillCard = ({ skill, variants }) => {
     speed: 400,
     glare: true,
     "max-glare": 0.2,
-    scale: 1.0,
+    scale: 1.1,
   };
 
   const tiltRef = useTilt(tiltOptions);
@@ -32,8 +32,6 @@ const SkillCard = ({ skill, variants }) => {
           transform: "perspective(1000px)",
         }}
       >
-        {/* Tło i Ramka - bez zmian */}
-
         <div
           className="absolute inset-0 rounded-2xl bg-green-900/10
           border-2 border-green-400/30 transition-all duration-300 transition-backdrop-filter group-hover:backdrop-blur-sm group-hover:border-green-300/80 group-hover:shadow-2xl group-hover:shadow-green-500/20"
